@@ -2,13 +2,13 @@
 
 namespace LegacyApp{
     public class UserService{
-        public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId){
+        public void AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId){
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)){
-                return false;
+                return;
             }
 
             if (!email.Contains("@") && !email.Contains(".")){
-                return false;
+                return;
             }
 
             var now = DateTime.Now;
@@ -16,7 +16,7 @@ namespace LegacyApp{
             if (now.Month < dateOfBirth.Month || (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)) age--;
 
             if (age < 21){
-                return false;
+                return;
             }
 
             var clientRepository = new ClientRepository();
@@ -50,11 +50,10 @@ namespace LegacyApp{
             }
             
             if (user.HasCreditLimit && user.CreditLimit < 500){
-                return false;
+                return;
             }
 
             UserDataAccess.AddUser(user);
-            return true;
         }
     }
 }
