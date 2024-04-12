@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace LegacyApp
-{
-    public class User
-    {
+namespace LegacyApp{
+    public class User{
         public object Client { get; internal set; }
         public DateTime DateOfBirth { get; internal set; }
         public string EmailAddress { get; internal set; }
