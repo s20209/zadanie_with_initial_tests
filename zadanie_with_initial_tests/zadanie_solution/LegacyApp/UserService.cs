@@ -4,16 +4,16 @@ namespace LegacyApp{
     public class UserService{
         public void AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId){
             if (!validateName(firstName, lastName)){
-                return;
+                 return false;
             }
 
             if (!validateEmail(email)){
-                return;
+                return false;
             }
 
             int age = calculateAge(dateOfBirth);
             if (age < 21){
-                return;
+                return false;
             }
 
             var clientRepository = new ClientRepository();
@@ -47,10 +47,11 @@ namespace LegacyApp{
             }
             
             if (user.HasCreditLimit && user.CreditLimit < 500){
-                return;
+                return false;
             }
 
             UserDataAccess.AddUser(user);
+            return true;
         }
         private static bool validateName(string firstName, string lastName){
         return !string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName);
