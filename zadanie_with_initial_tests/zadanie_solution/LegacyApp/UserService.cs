@@ -2,7 +2,7 @@
 
 namespace LegacyApp{
     public class UserService{
-        public void AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId){
+        public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId){
             if (!validateName(firstName, lastName)){
                  return false;
             }
